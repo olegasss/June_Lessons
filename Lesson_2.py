@@ -60,3 +60,32 @@ num3 = float(input("Type third number: "))
 max_num = max(num1, num2, num3)
 
 print(f"Largest number: {max_num}")
+
+
+#Additional task
+
+#Task 1
+
+answer = input("Do you have a driver's license ? (yes or no): ").strip().lower()
+if answer == "yes":
+    print("You can drive a car.")
+elif answer == "no":
+    print("You can't drive a car.")
+else:
+    print("Answer it 'yes' or 'no'.")
+
+
+#Task 4
+
+def check_number(number):
+    if number % 3 == 0 and number % 5 != 0:
+        return "The number is valid"
+    else:
+        return "The number is not valid"
+
+number = int(input("Type number: "))
+result = check_number(number)
+print(result)
+
+
+
