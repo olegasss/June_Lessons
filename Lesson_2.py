@@ -23,31 +23,17 @@ check_integer_less_than_20()
 
 #Task 3
 
-user_input = int(input("Enter your integer: "))
-try:
-    number = int(user_input)
-except ValueError:
-    print("Entered a valid integer.")
-    exit()
-
-if number == 0:
-    print("Entered value is zero.")
-else:
-    print("Entered value is not zero.")
+number = int(input("Enter a number: "))
+print(f'Is zero: {number == 0}')
+print(f'Is zero: {not number}')
 
 
 
 #Task 4
 
-user_input = input("Type your integer: ")
-try:
-    number = int(user_input)
-    if number % 2 == 0:
-        print(f"the number {number} is odd.")
-    else:
-        print(f"the number {number} is even.")
-except ValueError:
-    print("ValueError: enter the number a valid.")
+number = int(input("Enter a number: "))
+res = number % 2 and 'Odd' or 'Even'
+print(res)
 
 
 
