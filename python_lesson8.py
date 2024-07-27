@@ -1,59 +1,66 @@
 # Task 1
-
-def check_unique_elements(lst):
-    return len(set(lst)) == len(lst)
-
-my_list = [1, 2, 3, 4, 5]
-print(check_unique_elements(my_list))
-
-my_list_with_duplicates = [1, 3, 3, 5, 7]
-print(check_unique_elements(my_list_with_duplicates))
-
+import random
+x = [random.randint(1, 100) for _ in range(10)]
+res = 'Unique' if len(set(x)) == len(x) else 'Not unique'
+print(res)
+print(x)
 
 # Task 2
+x = [random.randint(1, 10) for _ in range(10)]
+count = 0
+for item in x:
+    if x.count(item) == 1:
+        count += 1
+print(count)
+print(x)
 
-def count_unique_elements(elements):
-    unique_elements = set(elements)
-    return len(unique_elements)
-
-# Eample
-
-my_list = [1, 2, 5, 2, 4, 5, 1, 66, 7, 11, 9, 1]
-unique_count = count_unique_elements(my_list)
-print(f"Number of unique elements: {unique_count}")
-
-
+res = {item for item in x if x.count(item) == 1}
+print(len(res))
 
 # Task 3
+x = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'one', 7: 'two'}
+res = 'Unique' if len(set(x.values())) == len(x) else 'Not unique'
+print(res)
 
-def check_unique_values(dictionary):
-    values = list(dictionary.values())
+# Task 4
+friendships = {
+    "user1": {"user2", "user3", "user4"},
+    "user2": {"user1", "user3"},
+    "user3": {"user1", "user2", "user4"},
+    "user4": {"user1", "user3"}
+}
 
-    if len(values) == len(set(values)):
-        return True
-    else:
-        return False
+user_1 = input('Enter user1: ')
+user_2 = input('Enter user2: ')
 
-my_dict = {'a': 10, 'b': -3.14, 'c': 256}
-print(check_unique_values(my_dict))
+friends_1 = friendships.get(user_1, set())
+friends_2 = friendships.get(user_2, set())
 
-my_dict = {'a': 1, 'b': 2, 'c': 1}
-print(check_unique_values(my_dict))
+mutual_friends = friends_1 & friends_2
+mutual_friends = mutual_friends or 'No mutual friends'
+
+print(mutual_friends)
+
+
+users = []
+for _ in range(10):
+    user = input('Enter user: ')
+    users.append(friendships.get(user, set()))
+
+mutual_friends = set.intersection(*users)
 
 
 # Task 5
+import string
+text_1 = 'Hello, my name is John'
+text_2 = 'Hello, my dear friend'
 
-def find_longest_common_word(str1, str2):
-    words1 = set(str1.split())
-    words2 = set(str2.split())
+for item in string.punctuation:
+    text_1 = text_1.replace(item, ' ')
+    text_2 = text_2.replace(item, ' ')
 
-    common_words = sorted(words1.intersection(words2), key=len, reverse=True)
+text_1 = set(text_1.lower().split())
+text_2 = set(text_2.lower().split())
 
-    return common_words[0] if common_words else ""
-
-
-line1 = "We could be better, but we are what we are."
-line2 = "We could be better, but we don't do anything about it."
-
-longest_common_word = find_longest_common_word(line1, line2)
-print("The longest common word:", longest_common_word)
+common_words = text_1 & text_2
+print(max(common_words, key=len))
