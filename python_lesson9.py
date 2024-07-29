@@ -46,13 +46,70 @@ print(palindrome_list[0])
 
 # Task 4
 
+from typing import List
+import string
 
 
+def text_to_numbers(text: str) -> List[int]:
+    for char in string.punctuation:
+        text = text.replace(char, ' ')
+    return list(map(int, text.split()))
 
 
+def is_arithmetic_progression(numbers: List[int]) -> bool:
+    if len(numbers) < 2:
+        return False
+
+    d = numbers[1] - numbers[0]
+    for i in range(2, len(numbers)):
+        if numbers[i] - numbers[i - 1] != d:
+            return False
+    return True
 
 
+def is_geometric_progression(numbers: List[int]) -> bool:
+    if len(numbers) < 2:
+        return False
 
+    q = numbers[1] // numbers[0]
+    for i in range(2, len(numbers)):
+        if numbers[i] // numbers[i - 1] != q:
+            return False
+    return True
+
+
+def next_arihmetic_number(numbers: List[int]) -> int:
+    d = numbers[1] - numbers[0]
+    return numbers[-1] + d
+
+
+def next_geometric_number(numbers: List[int]) -> int:
+    q = numbers[1] // numbers[0]
+    return numbers[-1] * q
+
+
+def base(numbers: List[int]) -> int:
+    if is_arithmetic_progression(numbers):
+        return next_arihmetic_number(numbers)
+
+    if is_geometric_progression(numbers):
+        return next_geometric_number(numbers)
+
+    return None
+
+
+def main():
+    text = input("Enter a list of numbers separated by a space: ")
+    numbers = text_to_numbers(text)
+    res = base(numbers)
+    if res:
+        print(f"The next number in the sequence is: {res}")
+    else:
+        print(f"The sequence is not defined by an arithmetic or geometric progression.")
+
+
+if __name__ == "__main__":
+    main()
 
 
 # Task 5
